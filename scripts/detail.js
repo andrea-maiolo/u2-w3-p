@@ -4,49 +4,42 @@ const url = "https://striveschool-api.herokuapp.com/api/product/";
 const loaders = document.querySelectorAll(".spinner-grow");
 
 const detailPage = function (perfume) {
-  console.log(perfume);
-
   const row = document.getElementById("products-container");
   row.innerHTML = "";
 
-  const col = document.createElement("div");
-  col.classList.add("col-12");
+  const colImg = document.createElement("div");
+  colImg.classList.add("col-12", "col-md-6");
 
-  const card = document.createElement("div");
-  card.classList.add("card");
+  const colText = document.createElement("div");
+  colText.classList.add("col-12", "col-md-6");
 
   const img = document.createElement("img");
   img.src = perfume.imageUrl;
-  img.classList.add("bd-placeholder-img", "card-img-top");
-  card.appendChild(img);
+  img.classList.add("bd-placeholder-img", "img-fluid");
+  colImg.appendChild(img);
 
-  const cardBody = document.createElement("div");
-  cardBody.classList.add("card-body");
+  const detailBody = document.createElement("div");
 
   const title = document.createElement("h5");
-  title.classList.add("card-title");
   title.textContent = perfume.name;
 
   const brand = document.createElement("p");
-  brand.classList.add("card-text");
   brand.textContent = perfume.brand;
 
   const text = document.createElement("p");
-  text.classList.add("card-text");
   text.textContent = perfume.description;
 
   const price = document.createElement("p");
-  price.classList.add("card-text");
   price.textContent = perfume.price + "€";
 
-  cardBody.appendChild(title);
-  cardBody.appendChild(brand);
-  cardBody.appendChild(text);
-  cardBody.appendChild(price);
+  detailBody.appendChild(title);
+  detailBody.appendChild(brand);
+  detailBody.appendChild(text);
+  detailBody.appendChild(price);
 
-  card.appendChild(cardBody);
-  col.appendChild(card);
-  row.appendChild(col);
+  colText.appendChild(detailBody);
+  row.appendChild(colImg);
+  row.appendChild(colText);
   loaders.forEach((loader) => loader.classList.add("d-none"));
 };
 
