@@ -36,29 +36,54 @@ const displayProducts = function (arrayOfProducts) {
     price.className = "card-text";
     price.textContent = perfume.price + "€";
 
+    const footer = document.createElement("div");
+    footer.className = "d-flex justify-content-between align-items-center";
+
+    const btnGroup = document.createElement("div");
+    btnGroup.className = "btn-group";
+
     const modifyBtn = document.createElement("button");
     modifyBtn.classList.add("btn");
     modifyBtn.classList.add("btn-info");
     modifyBtn.setAttribute("type", "button");
-    modifyBtn.textContent = "Modify";
+    const modifyIcon = document.createElement("i");
+    modifyIcon.classList.add("bi");
+    modifyIcon.classList.add("bi-pencil-fill");
+    modifyBtn.appendChild(modifyIcon);
+    modifyBtn.addEventListener("click", () => modifyProduct(perfume._id));
 
     const detailBtn = document.createElement("button");
     detailBtn.classList.add("btn");
     detailBtn.classList.add("btn-info");
     detailBtn.setAttribute("type", "button");
-    detailBtn.textContent = "Details";
+    const detailIcon = document.createElement("i");
+    detailIcon.classList.add("bi");
+    detailIcon.classList.add("bi-aspect-ratio");
+    detailBtn.appendChild(detailIcon);
+    detailBtn.addEventListener("click", () => seeDetail(perfume._id));
+
+    btnGroup.appendChild(modifyBtn);
+    btnGroup.appendChild(detailBtn);
+    footer.appendChild(btnGroup);
 
     cardBody.appendChild(title);
     cardBody.appendChild(brand);
     cardBody.appendChild(text);
     cardBody.appendChild(price);
-    cardBody.appendChild(modifyBtn);
-    cardBody.appendChild(detailBtn);
+    cardBody.appendChild(footer);
 
     card.appendChild(cardBody);
     col.appendChild(card);
     row.appendChild(col);
   });
+};
+
+const seeDetail = function (productId) {
+  window.location.assign("./detail.html?perfumeId=" + productId);
+};
+
+const modifyProduct = function (productId) {
+  window.location.assign("./backOffice.html?perfumeId=" + productId);
 };
 
 window.onload = () => {
@@ -69,9 +94,15 @@ window.onload = () => {
     },
   })
     .then((response) => {
+      if (!response.ok) {
+        throw new Error("error in fetch");
+      }
       return response.json();
     })
     .then((data) => {
       displayProducts(data);
+    })
+    .catch((error) => {
+      console.log(error);
     });
 };
