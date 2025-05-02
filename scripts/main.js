@@ -14,6 +14,7 @@ const displayProducts = function (arrayOfProducts) {
 
     const img = document.createElement("img");
     img.src = perfume.imageUrl;
+    img.setAttribute("alt", perfume.name);
     img.classList.add("bd-placeholder-img", "card-img-top", "img-fluid", "h-100", "object-fit-cover");
     card.appendChild(img);
 
