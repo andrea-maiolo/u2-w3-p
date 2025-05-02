@@ -8,6 +8,8 @@ const resetFormBtn = document.getElementById("reset-form-btn");
 resetFormBtn.addEventListener("click", () => {
   const modal = new bootstrap.Modal(document.getElementById("alertModal"));
   modal.show();
+  const alertMessage = document.getElementById("alertMessage");
+  alertMessage.innerText = "Vuoi resettare il form";
   const confirmBtn = document.getElementById("confirm-button");
   confirmBtn.addEventListener("click", () => {
     form.reset();
