@@ -6,14 +6,14 @@ const displayProducts = function (arrayOfProducts) {
 
   arrayOfProducts.forEach((perfume) => {
     const col = document.createElement("div");
-    col.className = "col-md-4";
+    col.classList.add("col-lg-4", "col-md-6", "d-flex");
 
     const card = document.createElement("div");
-    card.className = "card mb-4 shadow-sm";
+    card.classList.add("card", "mb-4", "shadow", "h-90", "border", "border-black");
 
     const img = document.createElement("img");
     img.src = perfume.imageUrl;
-    img.className = "bd-placeholder-img card-img-top";
+    img.classList.add("bd-placeholder-img", "card-img-top", "img-fluid", "h-100", "object-fit-cover");
     card.appendChild(img);
 
     const cardBody = document.createElement("div");
@@ -21,44 +21,40 @@ const displayProducts = function (arrayOfProducts) {
 
     const title = document.createElement("h5");
     title.className = "card-title";
-    title.textContent = perfume.name;
+    title.innerText = perfume.name;
 
     const brand = document.createElement("p");
     brand.className = "card-text";
-    brand.textContent = perfume.brand;
+    brand.innerText = perfume.brand;
 
     const text = document.createElement("p");
-    text.className = "card-text";
-    text.classList.add("text-truncate");
+    text.classList.add("card-text", "text-truncate");
     text.textContent = perfume.description;
 
     const price = document.createElement("p");
     price.className = "card-text";
-    price.textContent = perfume.price + "€";
+    price.innerText = perfume.price + "€";
 
     const footer = document.createElement("div");
-    footer.className = "d-flex justify-content-between align-items-center";
+    footer.classList.add("d-flex", "justify-content-between", "align-items-center");
 
     const btnGroup = document.createElement("div");
     btnGroup.className = "btn-group";
 
     const modifyBtn = document.createElement("button");
-    modifyBtn.classList.add("btn");
-    modifyBtn.classList.add("btn-info");
+    modifyBtn.classList.add("btn", "second-bg");
     modifyBtn.setAttribute("type", "button");
     const modifyIcon = document.createElement("i");
-    modifyIcon.classList.add("bi");
-    modifyIcon.classList.add("bi-pencil-fill");
+    modifyIcon.classList.add("bi", "bi-pencil-fill");
     modifyBtn.appendChild(modifyIcon);
     modifyBtn.addEventListener("click", () => modifyProduct(perfume._id));
 
     const detailBtn = document.createElement("button");
-    detailBtn.classList.add("btn");
-    detailBtn.classList.add("btn-info");
+    detailBtn.classList.add("btn", "main-bg");
     detailBtn.setAttribute("type", "button");
+    detailBtn.innerText = "scopri di piu";
     const detailIcon = document.createElement("i");
-    detailIcon.classList.add("bi");
-    detailIcon.classList.add("bi-aspect-ratio");
+    detailIcon.classList.add("bi", "bi-aspect-ratio", "ms-2");
     detailBtn.appendChild(detailIcon);
     detailBtn.addEventListener("click", () => seeDetail(perfume._id));
 
@@ -79,11 +75,11 @@ const displayProducts = function (arrayOfProducts) {
 };
 
 const seeDetail = function (productId) {
-  window.location.assign("./detail.html?perfumeId=" + productId);
+  window.location.assign("./pages/detail.html?perfumeId=" + productId);
 };
 
 const modifyProduct = function (productId) {
-  window.location.assign("./backOffice.html?perfumeId=" + productId);
+  window.location.assign("./pages/backOffice.html?perfumeId=" + productId);
 };
 
 window.onload = () => {

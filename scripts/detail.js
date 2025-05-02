@@ -9,34 +9,33 @@ const detailPage = function (perfume) {
   row.innerHTML = "";
 
   const col = document.createElement("div");
-  col.className = "col-12";
+  col.classList.add("col-12");
 
   const card = document.createElement("div");
-  card.className = "card mb-4 shadow-sm";
+  card.classList.add("card");
 
   const img = document.createElement("img");
   img.src = perfume.imageUrl;
-  img.className = "bd-placeholder-img card-img-top";
+  img.classList.add("bd-placeholder-img", "card-img-top");
   card.appendChild(img);
 
   const cardBody = document.createElement("div");
-  cardBody.className = "card-body";
+  cardBody.classList.add("card-body");
 
   const title = document.createElement("h5");
-  title.className = "card-title";
+  title.classList.add("card-title");
   title.textContent = perfume.name;
 
   const brand = document.createElement("p");
-  brand.className = "card-text";
+  brand.classList.add("card-text");
   brand.textContent = perfume.brand;
 
   const text = document.createElement("p");
-  text.className = "card-text";
-  text.classList.add("text-truncate");
+  text.classList.add("card-text");
   text.textContent = perfume.description;
 
   const price = document.createElement("p");
-  price.className = "card-text";
+  price.classList.add("card-text");
   price.textContent = perfume.price + "€";
 
   cardBody.appendChild(title);

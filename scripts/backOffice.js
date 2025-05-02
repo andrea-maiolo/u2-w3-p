@@ -3,9 +3,15 @@ const url = "https://striveschool-api.herokuapp.com/api/product/";
 const params = new URLSearchParams(window.location.search);
 const id = params.get("perfumeId");
 const method = id ? "PUT" : "POST";
+
 const resetFormBtn = document.getElementById("reset-form-btn");
 resetFormBtn.addEventListener("click", () => {
-  form.reset();
+  const modal = new bootstrap.Modal(document.getElementById("alertModal"));
+  modal.show();
+  const confirmBtn = document.getElementById("confirm-button");
+  confirmBtn.addEventListener("click", () => {
+    form.reset();
+  });
 });
 
 form.onsubmit = function (e) {
@@ -106,7 +112,7 @@ const deleteProduct = function (id) {
         if (resp.ok) {
           alert("hai correttamente eliminato questo prodotto");
           setTimeout(() => {
-            window.location.assign("./index.html");
+            window.location.assign("../index.html");
           }, 1200);
         }
       })
