@@ -1,6 +1,7 @@
 const params = new URLSearchParams(window.location.search);
 const id = params.get("perfumeId");
 const url = "https://striveschool-api.herokuapp.com/api/product/";
+const loaders = document.querySelectorAll(".spinner-grow");
 
 const detailPage = function (perfume) {
   console.log(perfume);
@@ -46,9 +47,13 @@ const detailPage = function (perfume) {
   card.appendChild(cardBody);
   col.appendChild(card);
   row.appendChild(col);
+  loaders.forEach((loader) => loader.classList.add("d-none"));
 };
 
 window.onload = () => {
+  loaders.forEach((loader) => {
+    loader.classList.remove("d-none");
+  });
   fetch(url + id, {
     headers: {
       Authorization:
